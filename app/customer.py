@@ -1,6 +1,7 @@
 from typing import List, Dict
 from app.car import Car
 from app.shop import Shop
+from app.utils import calculate_distance
 
 
 class Customer:
@@ -23,4 +24,5 @@ class Customer:
         )
 
     def calculate_trip_cost(self, shop: Shop, full_price: float) -> float:
-        distance_to_shop =
+        distance_to_shop = calculate_distance(self.location, shop.location)
+        total_distance = 2 * distance_to_shop

@@ -22,7 +22,7 @@ class Shop:
         for product_name, quantity in product_cart.items():
             price = self.products.get(product_name)
 
-            if price:
+            if price is not None:
                 total_product_cost += price * quantity
             else:
                 raise ValueError(
@@ -49,9 +49,8 @@ class Shop:
                 cost_of_item = price * quantity
 
                 print(
-                    f"# {quantity} {product_name} for "
+                    f"# {quantity} {product_name}s for "
                     f"{round(cost_of_item, 2)} dollars"
                 )
         print(f"# Total cost is {round(total_product_cost, 2)} dollars")
         print("# See you again!")
-        print("#")
