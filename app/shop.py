@@ -1,4 +1,4 @@
-from datetime import datetime
+import datetime
 from typing import List, Dict
 
 
@@ -22,10 +22,12 @@ class Shop:
         for product_name, quantity in product_cart.items():
             price = self.products.get(product_name)
 
-            if price is not None:
+            if price:
                 total_product_cost += price * quantity
             else:
-                raise ValueError
+                raise ValueError(
+                    f"Product {product_name} not available in {self.name}"
+                )
         return total_product_cost
 
     def print_receipt(
@@ -34,9 +36,9 @@ class Shop:
             product_cart: Dict[str, int],
             total_product_cost: float
     ) -> None:
-        data_now = datetime.now()
-        date_time = data_now.strftime("%d/%m/%Y %H:%M:%S")
-        print(f"\n# # Date: {date_time}")
+        data_now = datetime.datetime.now()
+        date_time = data_now.strftime("%m/%d/%Y %H:%M:%S")
+        print(f"# Date: {date_time}")
         print(f"# Thanks, {customer_name}, for your purchase!")
         print("# You have bought: ")
 

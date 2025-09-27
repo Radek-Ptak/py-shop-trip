@@ -12,9 +12,12 @@ class Car:
             self,
             distance: float,
             fuel_price: float
-    ) -> float | None:
+    ) -> float:
 
-        if self.fuel_consumption > 0 and fuel_price > 0 and distance > 0:
+        if self.fuel_consumption <= 0 or fuel_price <= 0 or distance < 0:
             return distance * (self.fuel_consumption / 100) * fuel_price
         else:
-            raise ValueError
+            raise ValueError(
+                "fuel_consumption, fuel_price must be > 0 "
+                "and distance must be >= 0"
+            )

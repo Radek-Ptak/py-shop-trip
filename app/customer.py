@@ -1,5 +1,4 @@
 from typing import List, Dict
-
 from app.car import Car
 from app.shop import Shop
 
