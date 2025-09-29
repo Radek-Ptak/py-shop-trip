@@ -17,12 +17,12 @@ class Shop:
             self,
             product_cart: Dict[str, int]
     ) -> float:
-        total_product_cost = 0
+        total_product_cost = 0.0
 
         for product_name, quantity in product_cart.items():
-            price = self.products.get(product_name)
 
-            if price is not None:
+            if product_name in self.products:
+                price = self.products[product_name]
                 total_product_cost += price * quantity
             else:
                 raise ValueError(
@@ -38,19 +38,19 @@ class Shop:
     ) -> None:
         data_now = datetime.datetime.now()
         date_time = data_now.strftime("%m/%d/%Y %H:%M:%S")
-        print(f"# Date: {date_time}")
-        print(f"# Thanks, {customer_name}, for your purchase!")
-        print("# You have bought: ")
+        print(f"Date: {date_time}")
+        print(f"Thanks, {customer_name}, for your purchase!")
+        print("You have bought: ")
 
         for product_name, quantity in product_cart.items():
-            price = self.products.get(product_name)
 
-            if price is not None:
+            if product_name in self.products:
+                price = self.products[product_name]
                 cost_of_item = price * quantity
 
                 print(
-                    f"# {quantity} {product_name}s for "
+                    f"{quantity} {product_name}s for "
                     f"{round(cost_of_item, 2)} dollars"
                 )
-        print(f"# Total cost is {round(total_product_cost, 2)} dollars")
-        print("# See you again!")
+        print(f"Total cost is {round(total_product_cost, 2)} dollars")
+        print("See you again!")

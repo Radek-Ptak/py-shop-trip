@@ -23,10 +23,10 @@ def load_config(file_path: str) -> Dict[str, Any]:
 
 def calculate_distance(loc1: Location, loc2: Location) -> float:
 
-    if len(loc1) != len(loc2):
-        raise ValueError("Location must be of same length")
+    if len(loc1) != 2 or len(loc2) != 2:
+        raise ValueError("Location must be a list of two numeric coordinates")
     if not all(isinstance(c, (float, int)) for c in loc1 + loc2):
-        raise ValueError("Location must be of same type")
+        raise ValueError("Location coordinates must be numeric (int or float)")
 
     squared_diff_sum = sum((loc1[i] - loc2[i]) ** 2 for i in range(len(loc1)))
     return math.sqrt(squared_diff_sum)

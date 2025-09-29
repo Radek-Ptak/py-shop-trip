@@ -14,6 +14,7 @@ class Customer:
             product_cart: Dict[str, int],
             car_data: Dict
     ) -> None:
+        self.home_location = list(location)
         self.name = name
         self.location = location
         self.money = money
@@ -23,6 +24,41 @@ class Customer:
             fuel_consumption=car_data["fuel_consumption"]
         )
 
-    def calculate_trip_cost(self, shop: Shop, full_price: float) -> float:
+    def calculate_trip_cost(
+            self,
+            shop: Shop,
+            fuel_price: float
+    ) -> float | None:
         distance_to_shop = calculate_distance(self.location, shop.location)
         total_distance = 2 * distance_to_shop
+
+        try:
+            product_total = shop.calculate_products_cost(self.product_cart)
+            fuel_cost = self.car_data.cost_for_distance(
+                distance=total_distance,
+                fuel_price=fuel_price
+            )
+            return float(product_total + fuel_cost)
+        except ValueError:
+            return None
+
+    def make_purchase(
+            self,
+            shop: Shop,
+            trip_cost: float,
+            product_total: float
+    ) -> None:
+
+        if self.money >= trip_cost:
+            print(f"{self.name} rides to {shop.name}")
+            self.money -= trip_cost
+            self.location = shop.location
+            shop.print_receipt(self.name, self.product_cart, product_total)
+            print(f"{self.name} rides to home")
+            self.location = self.home_location
+            print(f"{self.name} now has {round(self.money, 2)} dollars")
+        else:
+            print(
+                f"{self.name} doesn't have enough money "
+                f"to make a purchase in any shop"
+            )

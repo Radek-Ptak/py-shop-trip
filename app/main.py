@@ -1,3 +1,3 @@
-def shop_trip():
+def shop_trip() -> None:
     # write your code here
     pass
