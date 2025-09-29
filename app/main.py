@@ -31,7 +31,7 @@ def shop_trip() -> None:
         product_total = (
             shop.calculate_products_cost(customer.product_cart))
         total_cost = trip_cost + product_total if (
-                trip_cost is not None) else None
+            trip_cost is not None) else None
 
         if total_cost is not None and customer.money >= total_cost:
             if cheapest_trip is None or total_cost < cheapest_trip:
