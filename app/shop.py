@@ -49,7 +49,8 @@ class Shop:
                 cost_of_item = price * quantity
 
                 print(
-                    f"{quantity} {product_name}s for "
+                    f"{quantity} {product_name}"
+                    f"{"s" if quantity > 1 else " "} for "
                     f"{round(cost_of_item, 2)} dollars"
                 )
         print(f"Total cost is {round(total_product_cost, 2)} dollars")
