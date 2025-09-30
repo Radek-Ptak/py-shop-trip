@@ -45,18 +45,17 @@ class Customer:
     def make_purchase(
             self,
             shop: Shop,
-            trip_cost: float,
-            product_total: float
+            trip_cost: float
     ) -> None:
 
         if self.money >= trip_cost:
             print(f"{self.name} rides to {shop.name}")
             self.money -= trip_cost
             self.location = shop.location
-            shop.print_receipt(self.name, self.product_cart, product_total)
+            shop.print_receipt(self.name, self.product_cart)
             print(f"{self.name} rides home")
             self.location = self.home_location
-            print(f"{self.name} now has {self.money: .2f} dollars")
+            print(f"{self.name} now has {self.money:.2f} dollars")
         else:
             print(
                 f"{self.name} doesn't have enough money "

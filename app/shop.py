@@ -1,5 +1,5 @@
 import datetime
-from typing import List, Dict
+from typing import List, Dict, Any
 
 
 class Shop:
@@ -12,6 +12,14 @@ class Shop:
         self.name = name
         self.location = location
         self.products = products
+
+    def _fmt(self, x: Any) -> str:
+
+        value = round(float(x), 2)
+        if value.is_integer():
+            return str(int(value))
+        else:
+            return f"{value:.2f}".rstrip("0").rstrip(".")
 
     def calculate_products_cost(
             self,
@@ -33,14 +41,14 @@ class Shop:
     def print_receipt(
             self,
             customer_name: str,
-            product_cart: Dict[str, int],
-            total_product_cost: float
+            product_cart: Dict[str, int]
     ) -> None:
         data_now = datetime.datetime.now()
-        date_time = data_now.strftime("%m/%d/%Y %H:%M:%S")
+        date_time = data_now.strftime("%d/%m/%Y %H:%M:%S")
+        print("")
         print(f"Date: {date_time}")
         print(f"Thanks, {customer_name}, for your purchase!")
-        print("You have bought: ")
+        print("You have bought:")
 
         for product_name, quantity in product_cart.items():
 
@@ -51,8 +59,10 @@ class Shop:
 
                 print(
                     f"{quantity} {product_name}"
-                    f"{suffix} for {cost_of_item: .2f} dollars"
+                    f"{suffix} for {self._fmt(cost_of_item)} dollars"
                 )
-        print(f"Total cost is {total_product_cost: .2f} dollars")
+        total = self.calculate_products_cost(product_cart)
+        print(f"Total cost is "
+              f"{self._fmt(total)} dollars")
         print("See you again!")
         print("")
