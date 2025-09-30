@@ -47,11 +47,12 @@ class Shop:
             if product_name in self.products:
                 price = self.products[product_name]
                 cost_of_item = price * quantity
+                suffix = "s" if quantity > 1 else ""
 
                 print(
                     f"{quantity} {product_name}"
-                    f"{"s" if quantity > 1 else " "} for "
-                    f"{round(cost_of_item, 2)} dollars"
+                    f"{suffix} for {cost_of_item: .2f} dollars"
                 )
-        print(f"Total cost is {round(total_product_cost, 2)} dollars")
+        print(f"Total cost is {total_product_cost: .2f} dollars")
         print("See you again!")
+        print("")

@@ -54,9 +54,9 @@ class Customer:
             self.money -= trip_cost
             self.location = shop.location
             shop.print_receipt(self.name, self.product_cart, product_total)
-            print(f"{self.name} rides to home")
+            print(f"{self.name} rides home")
             self.location = self.home_location
-            print(f"{self.name} now has {round(self.money, 2)} dollars")
+            print(f"{self.name} now has {self.money: .2f} dollars")
         else:
             print(
                 f"{self.name} doesn't have enough money "
