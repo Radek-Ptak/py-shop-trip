@@ -56,6 +56,7 @@ class Customer:
             print(f"{self.name} rides home")
             self.location = self.home_location
             print(f"{self.name} now has {self.money:.2f} dollars")
+            print("")
         else:
             print(
                 f"{self.name} doesn't have enough money "

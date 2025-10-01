@@ -13,9 +13,9 @@ class Shop:
         self.location = location
         self.products = products
 
-    def _fmt(self, x: Any) -> str:
+    def _fmt(self, number: Any) -> str:
 
-        value = round(float(x), 2)
+        value = round(float(number), 2)
         if value.is_integer():
             return str(int(value))
         else:
