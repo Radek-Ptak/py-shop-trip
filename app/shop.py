@@ -45,10 +45,8 @@ class Shop:
     ) -> None:
         data_now = datetime.datetime.now()
         date_time = data_now.strftime("%d/%m/%Y %H:%M:%S")
-        print("")
-        print(f"Date: {date_time}")
-        print(f"Thanks, {customer_name}, for your purchase!")
-        print("You have bought:")
+        print("\n" f"Date: {date_time}\n" f"Thanks, {customer_name}, "
+              f"for your purchase!\n" "You have bought:")
 
         for product_name, quantity in product_cart.items():
 
@@ -62,7 +60,5 @@ class Shop:
                     f"{suffix} for {self._fmt(cost_of_item)} dollars"
                 )
         total = self.calculate_products_cost(product_cart)
-        print(f"Total cost is "
-              f"{self._fmt(total)} dollars")
-        print("See you again!")
-        print("")
+        print(f"Total cost is {self._fmt(total)} "
+              f"dollars\n" "See you again!\n" "")
